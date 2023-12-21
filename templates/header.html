@@ -1,0 +1,24 @@
+<header class="bg-white shadow-md">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="{{ url_for('index') }}" class="text-gray-800 text-lg font-bold"
+      >Unmilan Mukherjee</a
+    >
+    <div class="md:flex items-center navbar-links">
+      <a
+        href="{{ url_for('index') }}"
+        class="nav-link text-gray-800 text-lg transition-colors duration-300"
+        >Home</a
+      >
+      <a
+        href="{{ url_for('about') }}"
+        class="nav-link ml-4 text-gray-800 text-lg transition-colors duration-300"
+        >About</a
+      >
+      {% if current_user.is_authenticated and current_user.id == 1 %}
+      <a href="{{ url_for('add_project') }}" class="nav-link">Add Project</a>
+      {% endif %} {% if current_user.is_authenticated %}
+      <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+      {% endif %}
+    </div>
+  </nav>
+</header>

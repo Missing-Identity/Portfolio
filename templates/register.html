@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <h2>Register</h2>
+  <form action="{{ url_for('register') }}" method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.name.label(class="form-label") }} {{
+      form.name(class="form-control") }} {% if form.name.errors %}
+      <div class="invalid-feedback">{{ form.name.errors[0] }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      {{ form.password.label(class="form-label") }} {{
+      form.password(class="form-control") }} {% if form.password.errors %}
+      <div class="invalid-feedback">{{ form.password.errors[0] }}</div>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+{% endblock %}

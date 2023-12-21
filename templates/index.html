@@ -1,0 +1,273 @@
+{% extends "base.html" %} {% block content %}
+<!-- Hero Section -->
+<div class="hero">
+  <h1 class="text-5xl font-bold mb-4">Welcome to My Portfolio</h1>
+  <p class="text-lg font-medium">
+    I'm a Computer Science fresher eager to make an impact with my skills in
+    software development.
+  </p>
+</div>
+
+<!-- Projects Section -->
+<div class="py-8 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-6" style="color: #f97316">
+      Highlight Projects
+    </h2>
+    <div class="flex flex-wrap -mx-2">
+      {% for project in projects %}
+      <div class="w-full md:w-1/2 px-2 mb-4">
+        <div class="project-card">
+          <img
+            src="{{ project.image_url }}"
+            alt="Project Image"
+            class="rounded-t-lg w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="project-title">{{ project.name }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+            <a
+              href="{{ project.github_link }}"
+              target="_blank"
+              class="view-github"
+              >View on GitHub</a
+            >
+          </div>
+          {% if current_user.is_authenticated and current_user.id == 1 %}
+          <form
+            action="{{ url_for('delete_project', project_id=project.id) }}"
+            method="POST"
+          >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="project_id" value="{{ project.id }}" />
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Skills Section -->
+<div class="bg-white py-8">
+  <div class="max-w-6xl mx-auto px-4 pb-8">
+    <h2 class="text-2xl font-bold mb-6 text-center" style="color: #f97316">
+      Skills
+    </h2>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center"
+    >
+      <!-- Skill Item 1: Python and Javascript -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 448 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient-headphones"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient-headphones)"
+              d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4 .1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8 .1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3 .1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">
+          Programming Languages
+        </h3>
+        <p class="skill-description">
+          Proficiency in Python and Javascript coding languages
+        </p>
+      </div>
+
+      <!-- Skill Item 2: Selenium Automation -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 640 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient-bus"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient-bus)"
+              d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">
+          Automation and Scripting
+        </h3>
+        <p class="skill-description">
+          Web Automation and Scripting with Selenium and Beautiful Soup
+        </p>
+      </div>
+
+      <!-- Skill Item 3: API Development -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 576 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient-layers"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient-layers)"
+              d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">API Development</h3>
+        <p class="skill-description">API Development with Python and Flask</p>
+      </div>
+
+      <!-- Skill Item 4: Full-Stack Development -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 512 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient-globe"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient-globe)"
+              d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">
+          Full Stack Web Development
+        </h3>
+        <p class="skill-description">
+          Full Stack Web Development with Python and JavaScript
+        </p>
+      </div>
+
+      <!-- Skill Item 5: Flask Framework -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 448 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient)"
+              d="M288 0H160 128C110.3 0 96 14.3 96 32s14.3 32 32 32V196.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6C0 480.9 31.1 512 69.4 512H378.6c38.3 0 69.4-31.1 69.4-69.4c0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H288zM192 196.8V64h64V196.8c0 23.7 6.6 46.9 19 67.1L309.5 320h-171L173 263.9c12.4-20.2 19-43.4 19-67.1z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">Frameworks</h3>
+        <p class="skill-description">
+          Flask and Django: Python Frameworks for Web and API Development
+        </p>
+      </div>
+
+      <!-- Skill Item 6: Graphic Design -->
+      <div class="skill">
+        <div class="skill-icon rounded-full mx-auto mb-4">
+          <!-- Inline SVG with gradient -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 512 512"
+          >
+            <defs>
+              <linearGradient
+                id="icon-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #fde68a" />
+                <stop offset="100%" style="stop-color: #f97316" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#icon-gradient)"
+              d="M469.3 19.3l23.4 23.4c25 25 25 65.5 0 90.5l-56.4 56.4L322.3 75.7l56.4-56.4c25-25 65.5-25 90.5 0zM44.9 353.2L299.7 98.3 413.7 212.3 158.8 467.1c-6.7 6.7-15.1 11.6-24.2 14.2l-104 29.7c-8.4 2.4-17.4 .1-23.6-6.1s-8.5-15.2-6.1-23.6l29.7-104c2.6-9.2 7.5-17.5 14.2-24.2zM249.4 103.4L103.4 249.4 16 161.9c-18.7-18.7-18.7-49.1 0-67.9L94.1 16c18.7-18.7 49.1-18.7 67.9 0l19.8 19.8c-.3 .3-.7 .6-1 .9l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l64-64c.3-.3 .6-.7 .9-1l45.1 45.1zM408.6 262.6l45.1 45.1c-.3 .3-.7 .6-1 .9l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l64-64c.3-.3 .6-.7 .9-1L496 350.1c18.7 18.7 18.7 49.1 0 67.9L417.9 496c-18.7 18.7-49.1 18.7-67.9 0l-87.4-87.4L408.6 262.6z"
+            />
+          </svg>
+        </div>
+        <h3 class="skill-name text-lg font-semibold mb-2">Graphic Design</h3>
+        <p class="skill-description">
+          Skilled in Adobe Photoshop and illustrator
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

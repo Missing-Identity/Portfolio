@@ -1,0 +1,310 @@
+/* Sticky Navbar */
+header {
+  position: fixed; /* Fix the header at the top of the page */
+  top: 0; /* Align the top edge of the header with the top edge of the viewport */
+  width: 100%; /* Ensure the header extends full width */
+  z-index: 1000; /* Ensure the header stays above other content */
+  background: #fff; /* Add a background to ensure text is readable */
+}
+
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+  padding-top: 70px;
+  height: 100%;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+a {
+  font-weight: 600;
+}
+
+/* Navbar */
+nav {
+  background: #fff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar links */
+.nav-link {
+  color: #333; /* Default state color */
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+/* Hamburger menu button - hidden by default */
+#navbar-toggle {
+  display: none;
+}
+
+/* Mobile menu - hidden by default */
+#mobile-menu {
+  display: none;
+}
+
+.nav-link:hover {
+  color: #f97316; /* Warm orange for hover effect */
+}
+
+/* Hero Section */
+.hero {
+  padding: 6rem 0; /* Increased padding for more space */
+  background: linear-gradient(
+    135deg,
+    #fde68a 0%,
+    #fcd34d 100%
+  ); /* Warm gradient background */
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 5xl; /* Larger font size for the title */
+  margin-bottom: 1rem;
+  color: #fffefc; /* Off-white for a soft look on the warm background */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #fffefc; /* Off-white for the subtitle */
+}
+
+/* Projects Grid */
+.project-card {
+  background: #fffff0; /* Light yellow background */
+  border-radius: 0.5rem;
+  overflow: hidden; /* Ensures the image conforms to the card's border radius */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 15px 20px -3px rgba(0, 0, 0, 0.2),
+    0 5px 7px -4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #ea580c;
+}
+
+/* Card Title */
+.project-title {
+  color: #f97316;
+  margin-bottom: 1rem;
+}
+
+/* Project Description */
+.project-description {
+  margin-bottom: 2rem;
+  color: #6b7280; /* Darker text for readability */
+}
+
+/* View on GitHub Link */
+.view-github {
+  color: #f97316;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.view-github:hover {
+  color: #ea580c; /* Slightly darker orange on hover */
+  text-decoration: underline;
+}
+
+/* About Section */
+.about-section {
+  padding: 2rem 0;
+  background-color: #fff;
+}
+
+.about-title {
+  color: #f97316; /* Warm orange color for titles */
+  margin-bottom: 1rem;
+}
+
+.about-description {
+  color: #6b7280; /* Darker text for readability */
+  margin-bottom: 1rem;
+}
+
+/* Footer Styles */
+footer {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+footer p,
+footer a {
+  color: #fff;
+}
+
+footer a:hover {
+  color: #fff5e5; /* Light color for hover effect */
+  transition: color 0.3s ease;
+}
+
+/* Projects Section */
+.projects h2,
+.project h3,
+.project a {
+  color: #f97316; /* Warm orange color */
+}
+
+.project a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+
+/* General hover effect for all links */
+a:hover {
+  opacity: 0.8;
+}
+
+/* Skills Section Styles */
+.skill-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.skill-name {
+  color: #d97706; /* Darker shade of your yellow-orange theme for text */
+}
+
+.skill-description {
+  color: #6b7280; /* Darker text for readability */
+}
+
+/* Hobbies Section Styles */
+.hobby-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.hobby-name {
+  color: #d97706;
+}
+
+.hobby-description {
+  color: #6b7280;
+}
+
+.hobbies-section .hobby:last-child {
+  margin-bottom: 0;
+}
+
+/* Adjustments for padding and margins */
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+footer {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Hover effect for social icons */
+footer .social-icon {
+  transition: transform 0.2s;
+}
+
+footer .social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Form Styles */
+input,
+textarea,
+button {
+  font-family: "Poppins", sans-serif;
+}
+
+input[type="url"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #dddfe2;
+}
+
+input[type="submit"],
+button {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #ea580c;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .hero {
+    padding: 6rem 0;
+  }
+  .hero h1 {
+    font-size: 4rem; /* Even larger on bigger screens */
+  }
+  .hero p {
+    font-size: 1.5rem;
+  }
+}
